@@ -1,0 +1,354 @@
+{
+  "name": "GRAG-Data-Generation-Workflows",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e4599caa-f877-4f24-be43-ffd24efe40ec",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        700,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e050ddb5-d2f5-4fef-936d-c388e9888c39",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"messages\":[\n  {\"system\": \"Du sollst eine Frage in Deutsch zu dem bereitgestellten Textabschnitt formulieren. Dem Fragestellenden ist der Textabschnitt nicht bekannt und du sollst nicht darauf referenzieren. Verwende immer direkte Namensbezeichnungen - es ist verboten 'er','sie','es' als Bezeichnung zu verwenden. Beginne direkt mit der Frage. Hier kommt ein Beispiel eines Textabschnitts und 4 verschiedene Versionen, wie du darauf antworten sollst: <Textabschnitt> Johann Georg Hocheisen wurde im Jahr 1677 in Ulm geboren. Später folgte er einem Ruf als Hofmeister nach Tübingen, danach in Wittenberg und anschließend in Hamburg. Er war auch Professor der orientalischen Sprachen am Magdalenen-Gymnasium in Breslau. Diese Stellung hielt er bis zu seinem Tode am 21. Januar 1712 inne. </Textabschnitt> <Deine mögliche Antwort Version 1> Wo wurde Johann Georg Hocheisen geboren? </Deine mögliche Antwort Version 1> <Deine mögliche Antwort Version 2> An welchen Orten war Johann Georg Hocheisen als Hofmeister tätig? </Deine mögliche Antwort Version 2> <Deine mögliche Antwort Version 3> Was war Johann Georg Hocheisens Beruf in Breslau? </Deine mögliche Antwort Version 3> <Deine mögliche Antwort Version 4> Wann verstarb Johann Georg Hocheisen? </Deine mögliche Antwort Version 4>\"},\n  {\"user\": \"Nach dem Poincaré-Lemma existiert zu jedem Skalarfeld ein Vektorfeld, dessen Divergenz es ist. Dieses Vektorfeld ist nicht eindeutig bestimmt, denn es kann ein örtlich konstanter Vektor hinzuaddiert werden, ohne die Divergenz und damit das Skalarfeld zu verändern.\"}\n]\n}\n",
+        "options": {}
+      },
+      "id": "83895e0d-18d9-4cc3-a037-b8dadd22edc1",
+      "name": "Example Input Questions",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1160,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4d55e82e-f7fc-40aa-8946-59f0482acd9b",
+      "name": "Respond to Webhook Question",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "path": "question",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "2c84a4b9-5889-48f8-bd46-50b0d1538440",
+      "name": "Webhook Question",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        760
+      ],
+      "webhookId": "6081d2d0-77b1-4ffa-9f2d-9b8beb9795af"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{ $json.messages[0].system }}"
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "={{ $json.messages[1].user }}"
+            }
+          ]
+        }
+      },
+      "id": "b54e07c2-846a-4fbc-9a2f-ebf567d31e66",
+      "name": "Generate Questions",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1700,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "bc4ca7e4-7a78-4ac5-a27e-4e404fb1e5c2",
+      "name": "Ollama Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"messages\":[\n  {\"system\": \"Beantworte die Frage nur anhand des zur Verfügung gestellten Kontexts. Nachdem du die Frage beantwortet hast füge bitte nach folgender Zeichenabfolge '~~~' den Index der Referenz aus dem Array 'context' im JSON-Format hinzu: {'context_reference': 'context[relevant_index].source'} Hier kommt ein Beispiel einer Anfrage und wie du darauf antworten sollst: <Anfrage> Hier würde die Frage stehen? Kontext: 'context': [{'id': 500017, 'source': 'Relevanter Kontext, der zur Beantwortung der Frage genutzt wird'}, {'id': 500020, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500018, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500019, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}] </Anfrage> <Deine Antwort> Hier steht deine Antwort, welche nur Informationen aus dem relevanten Kontextabschnitt verwendet und in eine Antwort umformuliert. ~~~{'context_reference': 'context[0].source'} </Deine Antwort>\"},\n  {\"user\": \"Wie haben die Fichten-Kieferngewächse das Obere Saaletal in Thüringen geprägt? Kontext: 'context': [{'id': 552264, 'source': 'Im Naturpark Schiefergebirge bestimmen Kiefern und Fichten das Bild. Er ist zu über 80 % bewaldet. Bodensaure Eichen-Birken-Kiefern-Mischwälder repräsentieren als Restflächen die natürliche Bewaldung ohne forstwirtschaftlichen Hintergrund.'}, {'id': 552263, 'source': 'Fichten-Kieferngewächse prägen auch das Obere Saaletal in Thüringen mit seinen bewaldeten Kerbtälern. Die Erschwernis für landwirtschaftliche Nutzung förderte die Entstehung autochthoner Nadelwälder und naturnaher Laubwälder.'}, {'id': 552262, 'source': 'Im Thüringisch-Fränkischen Mittelgebirge passiert der Fluss hinter Hof die weitgehend entwaldete Münchberger Hochfläche mit ihren Fichten-Monokulturen und trennt im weiteren Verlauf das Vogtland, das in dieser Gegend gering bewirtschaftet wird, am rechten Ufer vom Frankenwald am linken. Für den Frankenwald ist nachgewiesen, dass er Ende des 19. Jahrhunderts fast vollständig abgeholzt war. Heute ist die Fichte, die zum Teil in Monokulturen vorkommt, der sichtbarste Vertreter der Flora.'}]\"}\n]\n}\n",
+        "options": {}
+      },
+      "id": "bfd3052d-35bc-4582-af78-8cc846b439e6",
+      "name": "Example Input Answer",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1160,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{ $json.messages[0].system }}"
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "={{ $json.messages[1].user }}"
+            }
+          ]
+        }
+      },
+      "id": "5f708569-2cde-4326-a1cd-6b36374ed187",
+      "name": "Generate Answer",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1700,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "path": "answer",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9c0d3699-5111-4463-a535-5c2925c0cacc",
+      "name": "Webhook Answer",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        1320
+      ],
+      "webhookId": "6081d2d0-77b1-4ffa-9f2d-9b8beb9795af"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b474a970-9073-4af8-b821-3c9d8d97b10c",
+      "name": "Respond to Webhook Answer",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Generate Question based on Context \n",
+        "height": 517.0225369858601,
+        "width": 1509.5521682329388
+      },
+      "id": "08920f8f-c150-49ad-a0fe-42f54740a966",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Generate Answer based on Context\n",
+        "height": 517.0225369858601,
+        "width": 1509.5521682329388,
+        "color": 4
+      },
+      "id": "90bd30bf-bf29-46f0-b838-1dc58eec9e8e",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        1120
+      ]
+    }
+  ],
+  "pinData": {
+    "Example Input Questions": [
+      {
+        "json": {
+          "messages": [
+            {
+              "system": "Du sollst eine Frage in Deutsch zu dem bereitgestellten Textabschnitt formulieren. Dem Fragestellenden ist der Textabschnitt nicht bekannt und du sollst nicht darauf referenzieren. Verwende immer direkte Namensbezeichnungen - es ist verboten 'er','sie','es' als Bezeichnung zu verwenden. Beginne direkt mit der Frage. Hier kommt ein Beispiel eines Textabschnitts und 4 verschiedene Versionen, wie du darauf antworten sollst: <Textabschnitt> Johann Georg Hocheisen wurde im Jahr 1677 in Ulm geboren. Später folgte er einem Ruf als Hofmeister nach Tübingen, danach in Wittenberg und anschließend in Hamburg. Er war auch Professor der orientalischen Sprachen am Magdalenen-Gymnasium in Breslau. Diese Stellung hielt er bis zu seinem Tode am 21. Januar 1712 inne. </Textabschnitt> <Deine mögliche Antwort Version 1> Wo wurde Johann Georg Hocheisen geboren? </Deine mögliche Antwort Version 1> <Deine mögliche Antwort Version 2> An welchen Orten war Johann Georg Hocheisen als Hofmeister tätig? </Deine mögliche Antwort Version 2> <Deine mögliche Antwort Version 3> Was war Johann Georg Hocheisens Beruf in Breslau? </Deine mögliche Antwort Version 3> <Deine mögliche Antwort Version 4> Wann verstarb Johann Georg Hocheisen? </Deine mögliche Antwort Version 4>"
+            },
+            {
+              "user": "Nach dem Poincaré-Lemma existiert zu jedem Skalarfeld ein Vektorfeld, dessen Divergenz es ist. Dieses Vektorfeld ist nicht eindeutig bestimmt, denn es kann ein örtlich konstanter Vektor hinzuaddiert werden, ohne die Divergenz und damit das Skalarfeld zu verändern."
+            }
+          ]
+        }
+      }
+    ],
+    "Example Input Answer": [
+      {
+        "json": {
+          "messages": [
+            {
+              "system": "Beantworte die Frage nur anhand des zur Verfügung gestellten Kontexts. Nachdem du die Frage beantwortet hast füge bitte nach folgender Zeichenabfolge '~~~' den Index der Referenz aus dem Array 'context' im JSON-Format hinzu: {'context_reference': 'context[relevant_index].source'} Hier kommt ein Beispiel einer Anfrage und wie du darauf antworten sollst: <Anfrage> Hier würde die Frage stehen? Kontext: 'context': [{'id': 500017, 'source': 'Relevanter Kontext, der zur Beantwortung der Frage genutzt wird'}, {'id': 500020, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500018, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500019, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}] </Anfrage> <Deine Antwort> Hier steht deine Antwort, welche nur Informationen aus dem relevanten Kontextabschnitt verwendet und in eine Antwort umformuliert. ~~~{'context_reference': 'context[0].source'} </Deine Antwort>"
+            },
+            {
+              "user": "Wie haben die Fichten-Kieferngewächse das Obere Saaletal in Thüringen geprägt? Kontext: 'context': [{'id': 552264, 'source': 'Im Naturpark Schiefergebirge bestimmen Kiefern und Fichten das Bild. Er ist zu über 80 % bewaldet. Bodensaure Eichen-Birken-Kiefern-Mischwälder repräsentieren als Restflächen die natürliche Bewaldung ohne forstwirtschaftlichen Hintergrund.'}, {'id': 552263, 'source': 'Fichten-Kieferngewächse prägen auch das Obere Saaletal in Thüringen mit seinen bewaldeten Kerbtälern. Die Erschwernis für landwirtschaftliche Nutzung förderte die Entstehung autochthoner Nadelwälder und naturnaher Laubwälder.'}, {'id': 552262, 'source': 'Im Thüringisch-Fränkischen Mittelgebirge passiert der Fluss hinter Hof die weitgehend entwaldete Münchberger Hochfläche mit ihren Fichten-Monokulturen und trennt im weiteren Verlauf das Vogtland, das in dieser Gegend gering bewirtschaftet wird, am rechten Ufer vom Frankenwald am linken. Für den Frankenwald ist nachgewiesen, dass er Ende des 19. Jahrhunderts fast vollständig abgeholzt war. Heute ist die Fichte, die zum Teil in Monokulturen vorkommt, der sichtbarste Vertreter der Flora.'}]"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Example Input Questions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Example Input Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Questions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Input Questions": {
+      "main": [
+        [
+          {
+            "node": "Generate Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Question": {
+      "main": [
+        [
+          {
+            "node": "Generate Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Questions": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Question",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Input Answer": {
+      "main": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Answer": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Answer": {
+      "main": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bf02aae4-229d-4eb8-9f81-78e39a880c70",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "51390329f1f3643a7b893b9ea08d5aa6c6fb5b02b583d40cb956e6501eac74a9"
+  },
+  "id": "pL7ho32DToB3tuq7",
+  "tags": []
+}
