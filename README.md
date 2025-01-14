@@ -9,7 +9,7 @@ platform with a curated list of compatible AI products and components to
 quickly get started with building self-hosted AI workflows.
 
 avemio-digital only adjusted the pull command to pull [avemio/GRAG-PHI-3.5-MINI-4B-MERGED-HESSIAN-AI-Q8_0-GGUF](https://huggingface.co/avemio/GRAG-PHI-3.5-MINI-4B-MERGED-HESSIAN-AI-Q8_0-GGUF) instead of llama-3.2.
-Additionally we have added Node-Templates you can import in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [GRAG_Data_Generation_Workflows.json](https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit/blob/main/GRAG_Data_Generation_Workflows.json)
+Additionally we have added Node-Template that will be imported in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [GRAG_Data_Generation_Workflows.json](https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit/blob/main/GRAG_Data_Generation_Workflows.json)
 
 > [!TIP]
 > [Read the announcement](https://blog.n8n.io/self-hosted-ai/)
