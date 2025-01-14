@@ -44,7 +44,7 @@ Engineering world, handles large amounts of data safely.
 
 ```bash
 git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-self-hosted-ai-starter-kit
+cd GRAG-SELF-HOSTED-AI-STARTER-KIT
 ```
 
 ### Running n8n using Docker Compose
@@ -53,7 +53,7 @@ cd GRAG-self-hosted-ai-starter-kit
 
 ```
 git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-self-hosted-ai-starter-kit
+cd GRAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose --profile gpu-nvidia up
 ```
 
@@ -77,7 +77,7 @@ for installation instructions, and run the starter kit as follows:
 
 ```
 git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-self-hosted-ai-starter-kit
+cd GRAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose up
 ```
 
@@ -88,7 +88,7 @@ by using `http://host.docker.internal:11434/` as the host.
 
 ```
 git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-self-hosted-ai-starter-kit
+cd GRAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose --profile cpu up
 ```
 
