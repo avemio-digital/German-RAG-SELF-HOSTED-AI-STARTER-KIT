@@ -1,6 +1,6 @@
-# GRAG Self-hosted AI starter kit
+# GRAG SELF-HOSTED AI STARTER-KIT
 
-**GRAG Self-hosted AI Starter Kit** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment.
+**GRAG-SELF-HOSTED-AI-STARTER-KIT** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment.
 
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
