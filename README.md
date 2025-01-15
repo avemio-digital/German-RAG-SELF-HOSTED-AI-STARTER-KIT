@@ -4,7 +4,7 @@
 
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
-Curated by <https://github.com/n8n-io>, it combines the self-hosted n8n
+Curated by <https://github.com/n8n-io> and adjusted by avemio-digital to pull GRAG-Models, it combines the self-hosted n8n
 platform with a curated list of compatible AI products and components to
 quickly get started with building self-hosted AI workflows.
 
@@ -204,14 +204,3 @@ interact with the local filesystem.
 This project is licensed under the Apache License 2.0 - see the
 [LICENSE](LICENSE) file for details.
 
-## 💬 Support
-
-Join the conversation in the [n8n Forum](https://community.n8n.io/), where you
-can:
-
-- **Share Your Work**: Show off what you’ve built with n8n and inspire others
-  in the community.
-- **Ask Questions**: Whether you’re just getting started or you’re a seasoned
-  pro, the community and our team are ready to support with any challenges.
-- **Propose Ideas**: Have an idea for a feature or improvement? Let us know!
-  We’re always eager to hear what you’d like to see next.
