@@ -39,9 +39,9 @@ x-init-ollama: &init-ollama
   volumes:
     - ollama_storage:/root/.ollama
   entrypoint: /bin/sh
-  command:
+command:
     - "-c"
-    - "sleep 3; OLLAMA_HOST=ollama:11434 ollama pull hf.co/avemio/GRAG-PHI-3.5-MINI-4B-MERGED-HESSIAN-AI-Q8_0-GGUF"
+    - "sleep 3; OLLAMA_HOST=ollama:11434 ollama pull hf.co/avemio/GRAG-LLAMA-3.1-8B-SFT-HESSIAN-AI-Q8_0-GGUF && OLLAMA_HOST=ollama:11434 ollama pull hf.co/avemio/GRAG-BGE-M3-MERGED-x-SNOWFLAKE-ARCTIC-HESSIAN-AI-Q8_0-GGUF"
 
 services:
   postgres:
