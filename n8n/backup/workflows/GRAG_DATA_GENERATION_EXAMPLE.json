@@ -1,0 +1,1346 @@
+{
+  "name": "GRAG-DATA-GENERATION-EXAMPLE",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0a521e88-915d-4393-8959-6c475796940b",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1240,
+        2500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"messages\":[\n  {\"system\": \"Beantworte die Frage nur anhand des zur Verfügung gestellten Kontexts. Nachdem du die Frage beantwortet hast füge bitte nach folgender Zeichenabfolge '~~~' den Index der Referenz aus dem Array 'context' im JSON-Format hinzu: {'context_reference': 'context[relevant_index].source'} Hier kommt ein Beispiel einer Anfrage und wie du darauf antworten sollst: <Anfrage> Hier würde die Frage stehen? Kontext: 'context': [{'id': 500017, 'source': 'Relevanter Kontext, der zur Beantwortung der Frage genutzt wird'}, {'id': 500020, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500018, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500019, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}] </Anfrage> <Deine Antwort> Hier steht deine Antwort, welche nur Informationen aus dem relevanten Kontextabschnitt verwendet und in eine Antwort umformuliert. ~~~{'context_reference': 'context[0].source'} </Deine Antwort>\"},\n  {\"user\": \"Wie haben die Fichten-Kieferngewächse das Obere Saaletal in Thüringen geprägt? Kontext: 'context': [{'id': 552264, 'source': 'Im Naturpark Schiefergebirge bestimmen Kiefern und Fichten das Bild. Er ist zu über 80 % bewaldet. Bodensaure Eichen-Birken-Kiefern-Mischwälder repräsentieren als Restflächen die natürliche Bewaldung ohne forstwirtschaftlichen Hintergrund.'}, {'id': 552263, 'source': 'Fichten-Kieferngewächse prägen auch das Obere Saaletal in Thüringen mit seinen bewaldeten Kerbtälern. Die Erschwernis für landwirtschaftliche Nutzung förderte die Entstehung autochthoner Nadelwälder und naturnaher Laubwälder.'}, {'id': 552262, 'source': 'Im Thüringisch-Fränkischen Mittelgebirge passiert der Fluss hinter Hof die weitgehend entwaldete Münchberger Hochfläche mit ihren Fichten-Monokulturen und trennt im weiteren Verlauf das Vogtland, das in dieser Gegend gering bewirtschaftet wird, am rechten Ufer vom Frankenwald am linken. Für den Frankenwald ist nachgewiesen, dass er Ende des 19. Jahrhunderts fast vollständig abgeholzt war. Heute ist die Fichte, die zum Teil in Monokulturen vorkommt, der sichtbarste Vertreter der Flora.'}]\"}\n]\n}\n",
+        "options": {}
+      },
+      "id": "aaaf1743-8cc4-4a50-b2a5-bef25fa0a63e",
+      "name": "Example Input Answer",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Generate Question based on Context \n",
+        "height": 557,
+        "width": 1090
+      },
+      "id": "f6b6073e-d89a-468d-8231-a935515fb0da",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Generate Answer based on Context\n",
+        "height": 577,
+        "width": 1090,
+        "color": 4
+      },
+      "id": "5fd47685-9e51-4e2c-aa10-ece7e59a8afd",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"messages\":[\n  {\"system\": \"Du sollst eine Frage in Deutsch zu dem bereitgestellten Textabschnitt formulieren. Dem Fragestellenden ist der Textabschnitt nicht bekannt und du sollst nicht darauf referenzieren. Verwende immer direkte Namensbezeichnungen - es ist verboten 'er','sie','es' als Bezeichnung zu verwenden. Beginne direkt mit der Frage. Hier kommt ein Beispiel eines Textabschnitts und 4 verschiedene Versionen, wie du darauf antworten sollst: <Textabschnitt> Johann Georg Hocheisen wurde im Jahr 1677 in Ulm geboren. Später folgte er einem Ruf als Hofmeister nach Tübingen, danach in Wittenberg und anschließend in Hamburg. Er war auch Professor der orientalischen Sprachen am Magdalenen-Gymnasium in Breslau. Diese Stellung hielt er bis zu seinem Tode am 21. Januar 1712 inne. </Textabschnitt> <Deine mögliche Antwort Version 1> Wo wurde Johann Georg Hocheisen geboren? </Deine mögliche Antwort Version 1> <Deine mögliche Antwort Version 2> An welchen Orten war Johann Georg Hocheisen als Hofmeister tätig? </Deine mögliche Antwort Version 2> <Deine mögliche Antwort Version 3> Was war Johann Georg Hocheisens Beruf in Breslau? </Deine mögliche Antwort Version 3> <Deine mögliche Antwort Version 4> Wann verstarb Johann Georg Hocheisen? </Deine mögliche Antwort Version 4>\"},\n  {\"user\": \"Nach dem Poincaré-Lemma existiert zu jedem Skalarfeld ein Vektorfeld, dessen Divergenz es ist. Dieses Vektorfeld ist nicht eindeutig bestimmt, denn es kann ein örtlich konstanter Vektor hinzuaddiert werden, ohne die Divergenz und damit das Skalarfeld zu verändern.\"}\n]\n}\n",
+        "options": {}
+      },
+      "id": "f2cebb40-61d1-48ed-af7a-56ac6675c83a",
+      "name": "Example Input Question",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<|im_start|>system\n{{ $json.messages[0].system }}<|im_end|>\n<|im_start|>user\n{{ $json.messages[1].user }}<|im_end|>"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        480,
+        140
+      ],
+      "id": "a69dc146-50fc-4c56-bfb3-f2bb0d5609f1",
+      "name": "Generate Question"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<|im_start|>system\n{{ $json.messages[0].system }}<|im_end|>\n<|im_start|>user\n{{ $json.messages[1].user }}<|im_end|>"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        460,
+        740
+      ],
+      "id": "af427f3f-7714-4c6a-a3d6-76c08dce5c19",
+      "name": "Generate Answer"
+    },
+    {
+      "parameters": {
+        "content": "## Ingest New Documents in Vector-Store\n",
+        "height": 797,
+        "width": 1090,
+        "color": 6
+      },
+      "id": "5b98d3ee-bc7c-4ca6-bfd3-1629312bbcac",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\"context\":[{\"id\": 552264, \"source\": \"Im Naturpark Schiefergebirge bestimmen Kiefern und Fichten das Bild. Er ist zu über 80 % bewaldet. Bodensaure Eichen-Birken-Kiefern-Mischwälder repräsentieren als Restflächen die natürliche Bewaldung ohne forstwirtschaftlichen Hintergrund.\"}, {\"id\": 552263, \"source\": \"Fichten-Kieferngewächse prägen auch das Obere Saaletal in Thüringen mit seinen bewaldeten Kerbtälern. Die Erschwernis für landwirtschaftliche Nutzung förderte die Entstehung autochthoner Nadelwälder und naturnaher Laubwälder.\"}, {\"id\": 552262, \"source\": \"Im Thüringisch-Fränkischen Mittelgebirge passiert der Fluss hinter Hof die weitgehend entwaldete Münchberger Hochfläche mit ihren Fichten-Monokulturen und trennt im weiteren Verlauf das Vogtland, das in dieser Gegend gering bewirtschaftet wird, am rechten Ufer vom Frankenwald am linken. Für den Frankenwald ist nachgewiesen, dass er Ende des 19. Jahrhunderts fast vollständig abgeholzt war. Heute ist die Fichte, die zum Teil in Monokulturen vorkommt, der sichtbarste Vertreter der Flora.\"}]}",
+        "options": {}
+      },
+      "id": "b35eedd0-56cd-4146-942e-d9ac72650368",
+      "name": "Example Context-Chunks",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        700,
+        1660
+      ],
+      "id": "c0ea5f1e-0174-448e-817b-bb207ba1bf33",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=http://qdrant:6333/collections/{{ $('Set Collection-Name').item.json.collection_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "<api-key-value>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1024,\n    \"distance\": \"Cosine\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -140,
+        1420
+      ],
+      "id": "b3d958a9-c99e-47b0-901e-9b5ecdf8dde3",
+      "name": "Create Documents Collection"
+    },
+    {
+      "parameters": {
+        "content": "## Create QDRANT-Collection FIRST\n",
+        "height": 797,
+        "width": 570,
+        "color": 6
+      },
+      "id": "d1224a84-acba-40a6-b978-d1c40b55156a",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Test to retrieve documents\n",
+        "height": 797,
+        "width": 570,
+        "color": 6
+      },
+      "id": "5151ccdb-345a-4890-89e2-274db63dce4f",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-BGE-M3-MERGED-x-SNOWFLAKE-ARCTIC-HESSIAN-AI-Q8_0-GGUF:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1680
+      ],
+      "id": "8c38b408-9a2d-4d3a-8a98-441a335c6ac8",
+      "name": "Embeddings Ollama Retrieve",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-BGE-M3-MERGED-x-SNOWFLAKE-ARCTIC-HESSIAN-AI-Q8_0-GGUF:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        540,
+        1660
+      ],
+      "id": "cf7e71d4-52ce-4789-ad1a-e2b3df788bd0",
+      "name": "Embeddings Ollama Ingest",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"collection_name\": \"test2\",\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -540,
+        1420
+      ],
+      "id": "8dd493a5-45a4-4c45-9d4e-9b2995c4a8e8",
+      "name": "Set Collection-Name"
+    },
+    {
+      "parameters": {
+        "url": "https://r.jina.ai/https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=OJ:L_202401689",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer jina_583ac27090e04ba4b423c6796d4dd51anvPYq9wxMQnVQsTDupyNRDoax6SL"
+            },
+            {
+              "name": "X-Return-Format",
+              "value": "markdown"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -420,
+        2500
+      ],
+      "id": "04de3aec-6499-4adb-8b2a-013b7dcc05ed",
+      "name": "Get AI-Act in Markdown"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "  {\"system\": \"Du sollst eine Frage in Deutsch zu dem bereitgestellten Textabschnitt formulieren. Dem Fragestellenden ist der Textabschnitt nicht bekannt und du sollst nicht darauf referenzieren. Verwende immer direkte Namensbezeichnungen - es ist verboten 'er','sie','es' als Bezeichnung zu verwenden. Beginne direkt mit der Frage. Hier kommt ein Beispiel eines Textabschnitts und 4 verschiedene Versionen, wie du darauf antworten sollst: <Textabschnitt> Johann Georg Hocheisen wurde im Jahr 1677 in Ulm geboren. Später folgte er einem Ruf als Hofmeister nach Tübingen, danach in Wittenberg und anschließend in Hamburg. Er war auch Professor der orientalischen Sprachen am Magdalenen-Gymnasium in Breslau. Diese Stellung hielt er bis zu seinem Tode am 21. Januar 1712 inne. </Textabschnitt> <Deine mögliche Antwort Version 1> Wo wurde Johann Georg Hocheisen geboren? </Deine mögliche Antwort Version 1> <Deine mögliche Antwort Version 2> An welchen Orten war Johann Georg Hocheisen als Hofmeister tätig? </Deine mögliche Antwort Version 2> <Deine mögliche Antwort Version 3> Was war Johann Georg Hocheisens Beruf in Breslau? </Deine mögliche Antwort Version 3> <Deine mögliche Antwort Version 4> Wann verstarb Johann Georg Hocheisen? </Deine mögliche Antwort Version 4>\"}\n",
+        "options": {}
+      },
+      "id": "5cdf2491-2f94-4925-bd48-599ea2cca72e",
+      "name": "System Question",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -820,
+        2500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "  {\"system\": \"Beantworte die Frage nur anhand des zur Verfügung gestellten Kontexts. Nachdem du die Frage beantwortet hast füge bitte nach folgender Zeichenabfolge '~~~' den Index der Referenz aus dem Array 'context' im JSON-Format hinzu: {'context_reference': 'context[relevant_index].source'} Hier kommt ein Beispiel einer Anfrage und wie du darauf antworten sollst: <Anfrage> Hier würde die Frage stehen? Kontext: 'context': [{'id': 500017, 'source': 'Relevanter Kontext, der zur Beantwortung der Frage genutzt wird'}, {'id': 500020, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500018, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500019, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}] </Anfrage> <Deine Antwort> Hier steht deine Antwort, welche nur Informationen aus dem relevanten Kontextabschnitt verwendet und in eine Antwort umformuliert. ~~~{'context_reference': 'context[0].source'} </Deine Antwort>\"}",
+        "options": {}
+      },
+      "id": "c8378711-5e69-4a78-b0fa-94185f8cebb6",
+      "name": "System Answer",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -620,
+        2500
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<|im_start|>system\n{{ $('System Question').item.json.system }}<|im_end|>\n<|im_start|>user\n{{ $('Limit').item.json.text }}<|im_end|>"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        820,
+        2500
+      ],
+      "id": "30676fc8-2daa-472b-8fde-b630ab0fe344",
+      "name": "Generate Question AI-Act"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<|im_start|>system\n{{ $('System Answer').item.json.system }}<|im_end|>\n<|im_start|>user\n{{ $('Generate Question AI-Act').item.json.text }}\nKontext:\n'context':\n[\n{'source': '{{ $('Limit').item.json.text }}' }\n]<|im_end|>"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1180,
+        2500
+      ],
+      "id": "44bff86c-d2f8-444a-99d0-3f909047762f",
+      "name": "Generate Answer AI-Act"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=http://qdrant:6333/collections/{{ $json.collection_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "<api-key-value>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -860,
+        2260
+      ],
+      "id": "69c6d4bf-9c98-46d0-94b5-cbaf532b30bd",
+      "name": "Delete AI-Act Collection"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=http://qdrant:6333/collections/{{ $('Set Collection-Ai-Act').item.json.collection_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "<api-key-value>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1024,\n    \"distance\": \"Cosine\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -660,
+        2260
+      ],
+      "id": "9dda27fb-ebc6-4680-b64b-ed421ec3b055",
+      "name": "Create AI-Act Collection"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "aa4f9e6c-9d10-4947-8c6f-51c50d9c42c0",
+              "name": "text",
+              "value": "={{ $json.pageContent }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        180,
+        2500
+      ],
+      "id": "bb89659b-0017-4e21-8f80-dc14aea706ab",
+      "name": "pageContent to text"
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000,
+        "chunkOverlap": 200,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        2860
+      ],
+      "id": "21ab1fba-6bbd-4c77-a686-a6e67d0bb396",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        620,
+        2500
+      ],
+      "id": "6a31e10a-c5d8-4063-a1d6-f8c50bc37dfb",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7d8f1fe9-513b-4d05-a811-04e982bb11f5",
+              "name": "question",
+              "value": "={{ $('Generate Question AI-Act').item.json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "786e7087-2488-4424-8d55-953c91665566",
+              "name": "context",
+              "value": "={{ $('Limit').item.json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "8808d628-41d6-4a34-8fec-cf0d36968ce9",
+              "name": "answer",
+              "value": "={{ $('Generate Answer AI-Act').item.json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        2500
+      ],
+      "id": "68bde539-a1d1-4a0e-b98a-f7c184379c34",
+      "name": "Construct Triples"
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1720,
+        2500
+      ],
+      "id": "d8e604a6-c483-446c-aacf-a16b2b166e0b",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e62570d8-f9a7-4f5f-84db-2aa8d4cc2d2f",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "https",
+              "operator": {
+                "type": "string",
+                "operation": "notStartsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        400,
+        2500
+      ],
+      "id": "53f9a6d6-f4b0-44a9-b60a-e594017bfa69",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "title",
+                "value": "={{ $('Get AI-Act in Markdown').item.json.data.title }}"
+              },
+              {
+                "name": "url",
+                "value": "={{ $('Get AI-Act in Markdown').item.json.data.url }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        2680
+      ],
+      "id": "fc242dd8-e26e-42a3-8c45-82279ef58dc2",
+      "name": "Data Loader"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "={{ $('Set Collection-Ai-Act').item.json.collection_name }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        2500
+      ],
+      "id": "6460cc5a-45a6-45a5-b0ec-a753ba7eff93",
+      "name": "Chunk & Ingest AI-Act",
+      "credentials": {
+        "qdrantApi": {
+          "id": "sFfERYppMeBnFNeA",
+          "name": "Local QdrantApi database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF:latest",
+        "options": {
+          "temperature": 0.1,
+          "topP": 0.1,
+          "frequencyPenalty": 0,
+          "presencePenalty": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        820,
+        2680
+      ],
+      "id": "aadc73f6-f750-4a9e-890d-553bca9087a2",
+      "name": "GRAG Question",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF:latest",
+        "options": {
+          "temperature": 0.1,
+          "topP": 0.1,
+          "frequencyPenalty": 0,
+          "presencePenalty": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2680
+      ],
+      "id": "86ca990a-1d7c-4b4f-8eba-0d34d04b7db2",
+      "name": "GRAG Answer",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-BGE-M3-MERGED-x-SNOWFLAKE-ARCTIC-HESSIAN-AI-Q8_0-GGUF:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        2740
+      ],
+      "id": "bcb5da2b-9da6-45a0-bc96-535fc9e4f7a0",
+      "name": "GRAG Embeddings",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### Ensure Collection is clean & created\n",
+        "height": 240,
+        "width": 400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -900,
+        2200
+      ],
+      "typeVersion": 1,
+      "id": "ef575eb8-d12c-45b0-ab51-e19be6532f8a",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "### Set variables to use later\n",
+        "height": 220,
+        "width": 580,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1080,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "537a6030-3b6d-4abb-b6c8-2255d6346ff3",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"collection_name\": \"ai-act\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1020,
+        2500
+      ],
+      "id": "1a87f653-6e5c-465d-8fe7-eac4732a1f6b",
+      "name": "Set Collection-Ai-Act"
+    },
+    {
+      "parameters": {
+        "content": "### Get AI-Act in Markdown, chunk it & store it in Qdrant\n",
+        "height": 580,
+        "width": 600,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -480,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "1b821a6a-b6d4-412c-9b1f-db159554cdf1",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### Use GRAG Embedding-Model\n",
+        "height": 280,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        2660
+      ],
+      "typeVersion": 1,
+      "id": "0b1e1ef4-7c74-46e1-a3f8-2ac9e28aaeb0",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "### Change Data-Structure & Limit items for Demo\n",
+        "height": 220,
+        "width": 620,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        140,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "30010a0a-be23-4d76-979f-ebac36f5f59a",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "### Generate Questions\n",
+        "height": 340,
+        "width": 340
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        780,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "a906fd74-030c-48f6-8293-7d825cfb1256",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "### Generate Answers\n",
+        "height": 340,
+        "width": 340,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "5cd5563c-a71c-433e-949e-bac40462ce96",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "### Construct Training-Data\n",
+        "height": 340,
+        "width": 380,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1500,
+        2460
+      ],
+      "typeVersion": 1,
+      "id": "0886b6dc-7a6c-4ce0-bbdd-2b7a4ef342d2",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "={{ $('Set Collection-Name').item.json.collection_name }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        540,
+        1420
+      ],
+      "id": "dd62d12d-a576-4eb2-be8f-06af354b56e8",
+      "name": "Ingest Documents",
+      "credentials": {
+        "qdrantApi": {
+          "id": "sFfERYppMeBnFNeA",
+          "name": "Local QdrantApi database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "={{ $json.collection_name }}",
+          "mode": "id"
+        },
+        "prompt": "Schiefergebirge",
+        "topK": 3,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        1420
+      ],
+      "id": "27ced811-18bb-4d5e-ad40-45806b9195f7",
+      "name": "Retrieve Documents",
+      "credentials": {
+        "qdrantApi": {
+          "id": "sFfERYppMeBnFNeA",
+          "name": "Local QdrantApi database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=http://qdrant:6333/collections/{{ $json.collection_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "<api-key-value>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -340,
+        1420
+      ],
+      "id": "eed0d56c-aba8-4028-991a-307572bcff1b",
+      "name": "Delete Documents Collection"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "context",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        340,
+        1420
+      ],
+      "id": "2838d340-1bdc-42a1-b716-055b040f3e99",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1840
+      ],
+      "id": "07da3662-8ad0-4296-9e3e-a5fbf74360bc",
+      "name": "Recursive Character Text Splitter1"
+    },
+    {
+      "parameters": {
+        "content": "# Generate QA-Trainingdata for RAG\n",
+        "height": 1040,
+        "width": 3380,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1340,
+        2060
+      ],
+      "typeVersion": 1,
+      "id": "296a5805-eb6b-4d9a-88e8-c095d36ba143",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF:latest",
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "id": "d4ca9116-cb7d-4414-8e53-b465a9c50cbc",
+      "name": "Ollama GRAG Question",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        580,
+        380
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "hf.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF:latest",
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "id": "86429568-2f2f-44e8-abe1-26a960ab2160",
+      "name": "Ollama GRAG Answer",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        560,
+        980
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Example Input Answer": [
+      {
+        "json": {
+          "messages": [
+            {
+              "system": "Beantworte die Frage nur anhand des zur Verfügung gestellten Kontexts. Nachdem du die Frage beantwortet hast füge bitte nach folgender Zeichenabfolge '~~~' den Index der Referenz aus dem Array 'context' im JSON-Format hinzu: {'context_reference': 'context[relevant_index].source'} Hier kommt ein Beispiel einer Anfrage und wie du darauf antworten sollst: <Anfrage> Hier würde die Frage stehen? Kontext: 'context': [{'id': 500017, 'source': 'Relevanter Kontext, der zur Beantwortung der Frage genutzt wird'}, {'id': 500020, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500018, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}, {'id': 500019, 'source': 'Kontext der nicht zur Beantwortung der Frage genutzt wird'}] </Anfrage> <Deine Antwort> Hier steht deine Antwort, welche nur Informationen aus dem relevanten Kontextabschnitt verwendet und in eine Antwort umformuliert. ~~~{'context_reference': 'context[0].source'} </Deine Antwort>"
+            },
+            {
+              "user": "Wie haben die Fichten-Kieferngewächse das Obere Saaletal in Thüringen geprägt? Kontext: 'context': [{'id': 552264, 'source': 'Im Naturpark Schiefergebirge bestimmen Kiefern und Fichten das Bild. Er ist zu über 80 % bewaldet. Bodensaure Eichen-Birken-Kiefern-Mischwälder repräsentieren als Restflächen die natürliche Bewaldung ohne forstwirtschaftlichen Hintergrund.'}, {'id': 552263, 'source': 'Fichten-Kieferngewächse prägen auch das Obere Saaletal in Thüringen mit seinen bewaldeten Kerbtälern. Die Erschwernis für landwirtschaftliche Nutzung förderte die Entstehung autochthoner Nadelwälder und naturnaher Laubwälder.'}, {'id': 552262, 'source': 'Im Thüringisch-Fränkischen Mittelgebirge passiert der Fluss hinter Hof die weitgehend entwaldete Münchberger Hochfläche mit ihren Fichten-Monokulturen und trennt im weiteren Verlauf das Vogtland, das in dieser Gegend gering bewirtschaftet wird, am rechten Ufer vom Frankenwald am linken. Für den Frankenwald ist nachgewiesen, dass er Ende des 19. Jahrhunderts fast vollständig abgeholzt war. Heute ist die Fichte, die zum Teil in Monokulturen vorkommt, der sichtbarste Vertreter der Flora.'}]"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Collection-Ai-Act",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Input Answer": {
+      "main": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Input Question": {
+      "main": [
+        [
+          {
+            "node": "Generate Question",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example Context-Chunks": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Ingest Documents",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama Retrieve": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retrieve Documents",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama Ingest": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Ingest Documents",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Collection-Name": {
+      "main": [
+        [
+          {
+            "node": "Delete Documents Collection",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Retrieve Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Documents Collection": {
+      "main": [
+        [
+          {
+            "node": "Example Context-Chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get AI-Act in Markdown": {
+      "main": [
+        [
+          {
+            "node": "Chunk & Ingest AI-Act",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "System Question": {
+      "main": [
+        [
+          {
+            "node": "System Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Question AI-Act": {
+      "main": [
+        [
+          {
+            "node": "Generate Answer AI-Act",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "System Answer": {
+      "main": [
+        [
+          {
+            "node": "Get AI-Act in Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Answer AI-Act": {
+      "main": [
+        [
+          {
+            "node": "Construct Triples",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete AI-Act Collection": {
+      "main": [
+        [
+          {
+            "node": "Create AI-Act Collection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pageContent to text": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Generate Question AI-Act",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Construct Triples": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Chunk & Ingest AI-Act",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chunk & Ingest AI-Act": {
+      "main": [
+        [
+          {
+            "node": "pageContent to text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRAG Question": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Question AI-Act",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRAG Answer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Answer AI-Act",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRAG Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Chunk & Ingest AI-Act",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Collection-Ai-Act": {
+      "main": [
+        [
+          {
+            "node": "System Question",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete AI-Act Collection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Documents Collection": {
+      "main": [
+        [
+          {
+            "node": "Create Documents Collection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Ingest Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama GRAG Question": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Question",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama GRAG Answer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7f587820-cf6c-4722-98c3-ca8442beb038",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  },
+  "id": "ZbROT4fglQIPftkT",
+  "tags": []
+}
