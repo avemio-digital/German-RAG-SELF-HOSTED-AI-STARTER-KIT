@@ -1,6 +1,6 @@
 # GRAG SELF-HOSTED AI STARTER-KIT
 
-**GRAG-SELF-HOSTED-AI-STARTER-KIT** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment.
+**GRAG-SELF-HOSTED-AI-STARTER-KIT** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment for synthetic Data Generation.
 
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
@@ -8,8 +8,8 @@ Curated by <https://github.com/n8n-io> and adjusted by avemio-digital to pull GR
 platform with a curated list of compatible AI products and components to
 quickly get started with building self-hosted AI workflows.
 
-avemio-digital only adjusted the pull command to pull [avemio/GRAG-PHI-3.5-MINI-4B-MERGED-HESSIAN-AI-Q8_0-GGUF](https://huggingface.co/avemio/GRAG-PHI-3.5-MINI-4B-MERGED-HESSIAN-AI-Q8_0-GGUF) instead of llama-3.2.
-Additionally we have added Node-Template that will be imported in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [GRAG_Data_Generation_Workflows.json](https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit/blob/main/GRAG_Data_Generation_Workflows.json)
+avemio-digital only adjusted the pull command to pull [avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF](https://huggingface.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF) instead of llama-3.2.
+Additionally we have added a Node-Template that will be imported in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [GRAG_DATA_GENERATION_EXAMPLE.json](https://github.com/avemio-digital/GRAG-SELF-HOSTED-AI-STARTER-KIT/blob/main/n8n/backup/workflows/GRAG_DATA_GENERATION_EXAMPLE.json)
 
 > [!TIP]
 > [Read the announcement](https://blog.n8n.io/self-hosted-ai/)
@@ -20,7 +20,7 @@ Additionally we have added Node-Template that will be imported in your self-host
 integrations and advanced AI components
 
 ✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
-and run the latest local LLMs
+and run the latest local LLMs from GRAG or Huggingface.
 
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
 store with an comprehensive API
@@ -101,7 +101,7 @@ After completing the installation steps above, simply follow the steps below to 
    have to do this once.
 2. Open the included workflow:
    <http://localhost:5678/workflow/srOnR8PAY3u4RSwb>
-3. Select **Test workflow** to start running the workflow.
+3. Select **GRAG_DATA_GENERATION_EXAMPLE.json** to start running the workflow.
 4. If this is the first time you’re running the workflow, you may need to wait
    until Ollama finishes downloading Llama3.2. You can inspect the docker
    console logs to check on the progress.
