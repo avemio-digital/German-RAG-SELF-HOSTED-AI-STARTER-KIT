@@ -1,6 +1,6 @@
-# GRAG SELF-HOSTED AI STARTER-KIT
+# German-RAG-SELF-HOSTED-AI-STARTER-KIT
 
-**GRAG-SELF-HOSTED-AI-STARTER-KIT** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment for synthetic Data Generation.
+**German-RAG-SELF-HOSTED-AI-STARTER-KIT** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment for synthetic Data Generation.
 
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
@@ -9,7 +9,7 @@ platform with a curated list of compatible AI products and components to
 quickly get started with building self-hosted AI workflows.
 
 avemio-digital only adjusted the pull command to pull [avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF](https://huggingface.co/avemio/GRAG-LLAMA-3.1-8B-MERGED-HESSIAN-AI-Q8_0-GGUF) instead of llama-3.2.
-Additionally we have added a Node-Template that will be imported in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [GRAG_DATA_GENERATION_EXAMPLE.json](https://github.com/avemio-digital/GRAG-SELF-HOSTED-AI-STARTER-KIT/blob/main/n8n/backup/workflows/GRAG_DATA_GENERATION_EXAMPLE.json)
+Additionally we have added a Node-Template that will be imported in your self-hosted AI Starter Kit powered by GRAG-Models for synthetic data generation. Please refer to the [German-RAG_DATA_GENERATION_EXAMPLE.json](https://github.com/avemio-digital/German-RAG-SELF-HOSTED-AI-STARTER-KIT/blob/main/n8n/backup/workflows/GRAG_DATA_GENERATION_EXAMPLE.json)
 
 > [!TIP]
 > [Read the announcement](https://blog.n8n.io/self-hosted-ai/)
@@ -43,8 +43,8 @@ Engineering world, handles large amounts of data safely.
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-SELF-HOSTED-AI-STARTER-KIT
+git clone https://github.com/avemio-digital/German-RAG-SELF-HOSTED-AI-STARTER-KIT
+cd German-RAG-SELF-HOSTED-AI-STARTER-KIT
 ```
 
 ### Running n8n using Docker Compose
@@ -52,8 +52,8 @@ cd GRAG-SELF-HOSTED-AI-STARTER-KIT
 #### For Nvidia GPU users
 
 ```
-git clone https://github.com/avemio-digital/GRAG-self-hosted-ai-starter-kit
-cd GRAG-SELF-HOSTED-AI-STARTER-KIT
+git clone https://github.com/avemio-digital/German-RAG-SELF-HOSTED-AI-STARTER-KIT
+cd German-RAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose --profile gpu-nvidia up
 ```
 
@@ -76,8 +76,8 @@ If you want to run Ollama on your mac, check the
 for installation instructions, and run the starter kit as follows:
 
 ```
-git clone https://github.com/avemio-digital/GRAG-SELF-HOSTED-AI-STARTER-KIT
-cd GRAG-SELF-HOSTED-AI-STARTER-KIT
+git clone https://github.com/avemio-digital/German-RAG-SELF-HOSTED-AI-STARTER-KIT
+cd German-RAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose up
 ```
 
@@ -87,8 +87,8 @@ by using `http://host.docker.internal:11434/` as the host.
 #### For everyone else
 
 ```
-git clone https://github.com/avemio-digital/GRAG-SELF-HOSTED-AI-STARTER-KIT
-cd GRAG-SELF-HOSTED-AI-STARTER-KIT
+git clone https://github.com/avemio-digital/German-RAG-SELF-HOSTED-AI-STARTER-KIT
+cd German-RAG-SELF-HOSTED-AI-STARTER-KIT
 docker compose --profile cpu up
 ```
 
